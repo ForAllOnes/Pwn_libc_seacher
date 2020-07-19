@@ -13,7 +13,7 @@ from parser import * \
 ret = searcher('puts',0xa30) \
 system_offset = ret['system']\
 str_bin_sh_offset = ret['str_bin_sh']\
-puts_addr = ret['puts']\
+puts_addr = ret['puts']
 
 Tips:\
 the return value of searcher is a dict like this { 'func_name':offsets }\
