@@ -17,6 +17,6 @@ Tips
 the return value of searcher is a dict like this { 'func_name':offsets }\
 func_name is encoded by unicode(which is returned from the website)\
 type(offsets) = int\
-the dict just containes the functions showed on the webpages. \
+the dict just containes the functions showed on the webpages. 
 
 enjoy !  (>_<)
