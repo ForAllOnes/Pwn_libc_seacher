@@ -7,16 +7,16 @@ With Requests & BeautifulSoup we could easily achieve the goal to find the offse
 
 For more detials:
 
-from parser import *
-ret = searcher('puts',0xa30)
-system_offset = ret['system']
-str_bin_sh_offset = ret['str_bin_sh']
-puts_addr = ret['puts']
+from parser import * \
+ret = searcher('puts',0xa30) \
+system_offset = ret['system']\
+str_bin_sh_offset = ret['str_bin_sh']\
+puts_addr = ret['puts']\
 
 Tips
-the return value of searcher is a dict like this { 'func_name':offsets }
-func_name is encoded by unicode(which is returned from the website)
-type(offsets) = int
-the dict just containes the functions showed on the webpages. 
+the return value of searcher is a dict like this { 'func_name':offsets }\
+func_name is encoded by unicode(which is returned from the website)\
+type(offsets) = int\
+the dict just containes the functions showed on the webpages. \
 
 enjoy !  (>_<)
