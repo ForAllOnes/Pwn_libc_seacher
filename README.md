@@ -13,9 +13,10 @@ system_offset = ret['system']
 str_bin_sh_offset = ret['str_bin_sh']
 puts_addr = ret['puts']
 
-# the return value of searcher is a dict like this { 'func_name':offsets }
-# func_name is encoded by unicode(which is returned from the website)
-# type(offsets) = int
-# the dict just containes the functions showed on the webpages. 
+Tips
+the return value of searcher is a dict like this { 'func_name':offsets }
+func_name is encoded by unicode(which is returned from the website)
+type(offsets) = int
+the dict just containes the functions showed on the webpages. 
 
 enjoy !  (>_<)
