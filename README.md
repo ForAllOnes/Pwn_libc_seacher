@@ -1,7 +1,9 @@
 # Pwn_libc_seacher
-This is the tools for pwn ret2libc. just like LibcSearcher. It's my version.
-This file is just written for fun.
-When I was playing pwn using LibcSearcher, I just don't know how to use it. And there's sometimes when there exists two libc version need to be choosed but just one discovered by LibcSearcher. It's really depressed me and I don't know why.
+This is the tools for pwn ret2libc. just like LibcSearcher. It's my version.\
+This file is just written for fun.\
+When I was playing pwn using LibcSearcher, I just don't know how to use it. \
+And there's sometimes when there exists two libc version need to be choosed but just one discovered by LibcSearcher. \
+It's really depressed me and I don't know why.\
 And this script is using the websites https://publicki.top/libc/ to obtain the offsets.
 With Requests & BeautifulSoup we could easily achieve the goal to find the offsets just like you do manually.
 
