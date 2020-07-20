@@ -22,14 +22,14 @@ def get_dict(text):
     td = soup.find_all('td')
     x,y = 1,2
     cout = len(td)/4
-    dict = {}
+    dict_a = {}
     for i in range(cout):
         name = td[x].text
         offset = td[y].text
         x += 4
         y += 4
-        dict[name]=int(offset,base=16)
-    return dict
+        dict_a[name]=int(offset,base=16)
+    return dict_a
 
 def equip_url(libc,url):
     url+='&l='
