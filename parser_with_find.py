@@ -86,10 +86,6 @@ def searcher(func_name,offset):
 
 def find(func_to_find):
     global global_base_addr
-   #   print 'global dic'
-   #   print global_dic
-   #   print 'global offset' + str(hex(global_basic_func_offset))
-   #   print 'global func name ' + str(global_basic_func_name)
     if global_base_addr == 0 and global_basic_func_offset!=0 and global_basic_func_name!='':
         global_base_addr = global_basic_func_offset-global_dic[global_basic_func_name]
         print 'global_base_addr '+ str(hex(global_base_addr))
