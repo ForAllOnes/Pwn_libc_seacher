@@ -25,7 +25,7 @@ def require(libc):
     ret = requests.get(url)
     while (ret.status_code!=200):
         ret = requests.get(url)
-    return ret.text.split('\n')
+    return ret.text
 
 def get_libc_version(func_name, offset):
     url = 'https://publicki.top/libc/?q='
@@ -47,24 +47,33 @@ def get_libc_version(func_name, offset):
                 number = input('select a database:\n')
             return require(ret[number])
 
-def dic_equip(text)
-    dic  = {}
+def dic_equip(text):
+    dic  = dict()
+    text = text.split('\n')[0:-1]
     for i in text:
-        if func_name in i:
-            l = i.split(' ')
-            dic[l[0]]=int(('0x'+l[1]),16)
-    print dic
+        i = i.split(' ')
+        func_name = i[0]
+        offset = i[1]
+        dic[func_name.encode('utf-8')] = int(('0x'+offset),16)
+    return dic
 
-def elect(func_name, dic):
-    try:
-        return dic[func_name]
-    except KeyError as ke:
-        func_name = input('please input the func_name:\n')
-        return find(func_name,text)
+def elect(func_name, text):
+    dic = dic_equip(text)
+    ret = dic.get(func_name)
+    if ret==None:
+        # we should just print the func contains the func_name.
+        # regular expression don't needs the dict.
+        # we should just select all the func in text using re
+
+        func_name = raw_input('please input a func_name')
+        print func_name
+        return elect(func_name,dic)
+    return ret
 
 def find(func_name,text):
     pass
 
 if __name__ == "__main__":
     text = get_libc_version('_IO_2_1_stdin_',0x5c0)
-    ret = find('exec',text)
+    #ret = find('exec',text)
+    print elect('exec',text)
