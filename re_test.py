@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 import re
+
 def get_func(func_name,text):
     offset = get_specific_func(func_name,text)
     if offset == []:
@@ -15,6 +16,7 @@ def get_func(func_name,text):
     elif len(offset) == 1:
         return int ( '0x'+offset[0].split(' ')[1] , 16)
     return int('0x'+offset.split(' ')[1], 16)
+
 def get_all_func(func_name,text):
     r = '[\w]*' + func_name+'[\w]* [0-9a-zA-Z]+'
     ret = re.compile(r)
@@ -28,11 +30,4 @@ def get_specific_func(func_name,text):
             return [a[0]]
     elif len(a)==1:
         return [a[0].strip()]
-    return []
-if __name__=="__main__":
-    with open("./saved.file",'r') as f:
-        text = f.read()
-        while(True):
-             func_name = raw_input()
-             offset = get_func(func_name,text)
-             print '\n', hex(offset)
+    return None

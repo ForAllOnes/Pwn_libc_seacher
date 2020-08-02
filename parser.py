@@ -2,8 +2,10 @@
 # coding=utf-8
 import requests
 from bs4 import BeautifulSoup
+from re_test import *
 
-def parser(text):
+text = ''
+def parser_html(text):
         cout = 0
         l = []
         soup = BeautifulSoup(text,'html.parser')
@@ -16,28 +18,12 @@ def parser(text):
             return None,0
         print l
         return l,cout
-
-def get_dict(text):
-    soup = BeautifulSoup(text,'html.parser')
-    td = soup.find_all('td')
-    x,y = 1,2
-    cout = len(td)/4
-    dict_a = {}
-    for i in range(cout):
-        name = td[x].text
-        offset = td[y].text
-        x += 4
-        y += 4
-        dict_a[name]=int(offset,base=16)
-    return dict_a
-
 def equip_url(libc,url):
-    url+='&l='
-    url+=libc
+    url = 'https://publicki.top/d/'
+    url += libc
     print url
     r = requests.get(url)
     if r.status_code==200:
-        # test func 
         return r.text
     else:
         print 'get libc information error'
@@ -49,25 +35,21 @@ def searcher(func_name,offset):
     url += '%3A'
     url += hex(offset)
     r=requests.get(url)
+    global text
+    base_addr = 0
     if r.status_code == 200:
-       ret,cout =  parser(r.text)
+       ret,cout =  parser_html(r.text)
        if cout==0:
            print 'not found'
            return None
-       elif cout==1:
-           # select the only database
-           # equip the offsets in a dict and return
-           text = equip_url(ret[0],url)
-           return get_dict(text)
-       else:
-           # choose one database
+       elif cout>1:
            number = input('select a database:\n')
-           while number>cout-1:
+           while number>cout-1  or number<0:
                number = input('please choose again:\n')
-           text = equip_url(ret[number],url)
-           if text == None:
-                print 'some thing wrong here'
-                return 
-           return  get_dict(text)
-    else :
+           ret[0] = ret[number]
+       text = equip_url(ret[0],url)
+       base_addr = offset-get_func(func_name,text)
+       return base_addr
+    else:
         print r.status_code
+        return None
