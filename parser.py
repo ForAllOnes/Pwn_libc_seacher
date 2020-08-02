@@ -20,8 +20,7 @@ def parser_html(text):
         return l,cout
 def equip_url(libc,url):
     url = 'https://publicki.top/d/'
-    url += libc + '.symbols'
-    print url
+    url += libc+'.symbols'
     r = requests.get(url)
     if r.status_code==200:
         return r.text
