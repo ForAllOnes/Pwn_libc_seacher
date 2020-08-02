@@ -10,15 +10,15 @@ With Requests & BeautifulSoup we could easily achieve the goal to find the offse
 For more detials:
 
 from parser import * \
-ret = searcher('puts',0xa30) \
-system_offset = ret['system']\
-str_bin_sh_offset = ret['str_bin_sh']\
-puts_addr = ret['puts']
+base_addr = searcher('puts',0xa30) \
+system_offset =base_addr + find_func['system']\
+str_bin_sh_offset =base_addr + find_func['str_bin_sh']\
+puts_offset = find_func['puts']
 
 Tips:\
-the return value of searcher is a dict like this { 'func_name':offsets }\
+the return value of searcher the libc base addr\
 func_name is encoded by unicode(which is returned from the website)\
 type(offsets) = int\
-the dict just containes the functions showed on the webpages. 
+all symbols in libcdatabase is supportted.
 
 enjoy !  (>_<)
